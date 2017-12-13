@@ -1,0 +1,6 @@
+# what to say
+greeting: Hello World
+
+# how often to trigger the timer
+timer:
+  period: 2000
