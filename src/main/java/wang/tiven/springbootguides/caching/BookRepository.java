@@ -1,7 +1,14 @@
 package wang.tiven.springbootguides.caching;
 
-public interface BookRepository {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 
-    Book getByIsbn(String isbn);
+public interface BookRepository extends CrudRepository<Book, Long> {
 
+  @Cacheable("books")
+  Book getByIsbn(String isbn);
+
+  @CachePut(cacheNames = "books", key = "#p0.isbn")
+  Book save(Book isbn);
 }

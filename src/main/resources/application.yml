@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tsb
+    username: postgres
+    password: mysecretpassword
+  jpa:
+    generate-ddl: true
+    show-sql: true
