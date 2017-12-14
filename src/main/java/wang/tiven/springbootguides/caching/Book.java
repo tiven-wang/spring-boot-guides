@@ -1,12 +1,19 @@
 package wang.tiven.springbootguides.caching;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Book {
+public class Book implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6988989437786843599L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,9 +21,9 @@ public class Book {
 
 	private String isbn;
 	private String title;
-	
+
 	public Book(){}
-	
+
 	public Book(String isbn, String title) {
 		this.isbn = isbn;
 		this.title = title;

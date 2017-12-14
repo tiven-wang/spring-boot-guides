@@ -18,10 +18,14 @@ public class AppRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-	
+
 		logger.info(".... Saving books");
-		logger.info("isbn-1234 -->" + bookRepository.save(new Book("isbn-1234", "isbn 1234")));
-		logger.info("isbn-4567 -->" + bookRepository.save(new Book("isbn-4567", "isbn 4567")));
+		if(null == bookRepository.getByIsbn("isbn-1234")) {
+			logger.info("isbn-1234 -->" + bookRepository.save(new Book("isbn-1234", "isbn 1234")));
+		}
+		if(null == bookRepository.getByIsbn("isbn-4567")) {
+			logger.info("isbn-4567 -->" + bookRepository.save(new Book("isbn-4567", "isbn 4567")));
+		}
 
 		logger.info(".... Fetching books");
 		logger.info("isbn-1234 -->" + bookRepository.getByIsbn("isbn-1234"));
