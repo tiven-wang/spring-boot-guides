@@ -1,8 +1,12 @@
-# the name of Camel
+
 camel:
   springboot:
+    # the name of Camel
     name: SpringBootCamel
-
+  component:
+      servlet:
+        mapping:
+          contextPath: /camel-rest-jpa/*
 # what to say
 greeting: Hello World
 

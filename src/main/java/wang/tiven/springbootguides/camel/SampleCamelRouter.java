@@ -1,6 +1,7 @@
 package wang.tiven.springbootguides.camel;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.model.rest.RestBindingMode;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,12 +14,22 @@ public class SampleCamelRouter extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("timer:hello?period={{timer.period}}").routeId("hello")
-                .transform().method("myBean", "saySomething")
-                .filter(simple("${body} contains 'foo'"))
-                    .to("log:foo")
-                .end()
-                .to("stream:out");
+      restConfiguration()
+              .contextPath("/camel-rest-jpa").apiContextPath("/api-doc")
+                  .apiProperty("api.title", "Camel REST API")
+                  .apiProperty("api.version", "1.0")
+                  .apiProperty("cors", "true")
+                  .apiContextRouteId("doc-api")
+              .bindingMode(RestBindingMode.json);
+
+      rest("/books").description("Books REST service")
+          .get("/").description("The list of all the books")
+              .route().routeId("books-api")
+              .bean("bookRepository", "getAll")
+              .endRest()
+          .get("/{id}").description("Details of an book by id")
+              .route().routeId("book-api")
+              .bean("bookRepository", "getByIsbn(${header.id})");
     }
 
 }

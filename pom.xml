@@ -72,6 +72,18 @@
 			<artifactId>camel-stream-starter</artifactId>
 		</dependency>
 		<dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-servlet-starter</artifactId>
+    </dependency>
+		<dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jackson-starter</artifactId>
+    </dependency>
+		<dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-swagger-java-starter</artifactId>
+    </dependency>
+		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-test-spring</artifactId>
 			<scope>test</scope>
